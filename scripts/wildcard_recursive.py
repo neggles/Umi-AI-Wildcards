@@ -593,10 +593,3 @@ class Script(scripts.Script):
                 p.extra_generation_params["File includes"] = "|".join(
                     TagLoader.files)
 
-from modules import sd_hijack
-path = os.path.join(scripts.basedir(), "embeddings")
-try:
-    sd_hijack.model_hijack.embedding_db.add_embedding_dir(path)
-except:
-    print("UmiAI: Failed to load embeddings. Your a1111 installation is ancient. Update it.")
-    pass
