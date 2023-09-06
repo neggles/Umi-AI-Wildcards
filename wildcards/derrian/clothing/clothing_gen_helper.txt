@@ -1,0 +1,3 @@
+__derrian/clothing/accessories/accessories_gen__
+__derrian/clothing/foot_and_legwear/foot_and_legwear_gen__
+__derrian/clothing/accessories/accessories_gen__, __derrian/clothing/foot_and_legwear/foot_and_legwear_gen__

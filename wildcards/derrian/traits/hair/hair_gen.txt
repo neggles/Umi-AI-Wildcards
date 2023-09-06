@@ -1,0 +1,34 @@
+__derrian/colors/color__ hair, __derrian/traits/hair/hair_length__
+__derrian/colors/color__ hair, __derrian/traits/hair/hairstyle__
+__derrian/colors/color__ hair, __derrian/traits/hair/tied_hair__
+__derrian/colors/color__ hair, __derrian/traits/hair/hair_texture__
+__derrian/colors/color__ hair, __derrian/traits/hair/hair_front__
+__derrian/traits/hair/hair_length__, __derrian/traits/hair/haircol_mix__
+__derrian/traits/hair/hairstyle__, __derrian/traits/hair/haircol_mix__
+__derrian/traits/hair/tied_hair__, __derrian/traits/hair/haircol_mix__
+__derrian/traits/hair/hair_texture__, __derrian/traits/hair/haircol_mix__
+__derrian/traits/hair/hair_front__, __derrian/traits/hair/haircol_mix__
+__derrian/colors/color__ hair, __derrian/traits/hair/hair_length__, __derrian/traits/hair/hairstyle__
+__derrian/colors/color__ hair, __derrian/traits/hair/hair_length__, __derrian/traits/hair/tied_hair__
+__derrian/colors/color__ hair, __derrian/traits/hair/hair_length__, __derrian/traits/hair/hair_texture__
+__derrian/colors/color__ hair, __derrian/traits/hair/hairstyle__, __derrian/traits/hair/hair_texture__
+__derrian/colors/color__ hair, __derrian/traits/hair/hairstyle__, __derrian/traits/hair/hair_front__
+__derrian/colors/color__ hair, __derrian/traits/hair/tied_hair__, __derrian/traits/hair/hair_texture__
+__derrian/colors/color__ hair, __derrian/traits/hair/tied_hair__, __derrian/traits/hair/hair_front__
+__derrian/colors/color__ hair, __derrian/traits/hair/hair_texture__, __derrian/traits/hair/hair_front__
+__derrian/traits/hair/hair_length__, __derrian/traits/hair/hairstyle__, __derrian/traits/hair/haircol_mix__
+__derrian/traits/hair/hair_length__, __derrian/traits/hair/tied_hair__, __derrian/traits/hair/haircol_mix__
+__derrian/traits/hair/hair_length__, __derrian/traits/hair/hair_texture__, __derrian/traits/hair/haircol_mix__
+__derrian/traits/hair/hairstyle__, __derrian/traits/hair/hair_texture__, __derrian/traits/hair/haircol_mix__
+__derrian/traits/hair/hairstyle__, __derrian/traits/hair/hair_front__, __derrian/traits/hair/haircol_mix__
+__derrian/traits/hair/tied_hair__, __derrian/traits/hair/hair_texture__, __derrian/traits/hair/haircol_mix__
+__derrian/traits/hair/tied_hair__, __derrian/traits/hair/hair_front__, __derrian/traits/hair/haircol_mix__
+__derrian/traits/hair/hair_texture__, __derrian/traits/hair/hair_front__, __derrian/traits/hair/haircol_mix__
+__derrian/colors/color__ hair, __derrian/traits/hair/hair_length__, __derrian/traits/hair/hairstyle__, __derrian/traits/hair/hair_texture__
+__derrian/colors/color__ hair, __derrian/traits/hair/hair_length__, __derrian/traits/hair/tied_hair__, __derrian/traits/hair/hair_texture__
+__derrian/colors/color__ hair, __derrian/traits/hair/hairstyle__, __derrian/traits/hair/hair_texture__, __derrian/traits/hair/hair_front__
+__derrian/colors/color__ hair, __derrian/traits/hair/tied_hair__, __derrian/traits/hair/hair_texture__, __derrian/traits/hair/hair_front__
+__derrian/traits/hair/hair_length__, __derrian/traits/hair/hairstyle__, __derrian/traits/hair/hair_texture__, __derrian/traits/hair/haircol_mix__
+__derrian/traits/hair/hair_length__, __derrian/traits/hair/tied_hair__, __derrian/traits/hair/hair_texture__, __derrian/traits/hair/haircol_mix__
+__derrian/traits/hair/hairstyle__, __derrian/traits/hair/hair_texture__, __derrian/traits/hair/hair_front__, __derrian/traits/hair/haircol_mix__
+__derrian/traits/hair/tied_hair__, __derrian/traits/hair/hair_texture__, __derrian/traits/hair/hair_front__, __derrian/traits/hair/haircol_mix__

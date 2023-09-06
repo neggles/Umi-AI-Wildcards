@@ -1,0 +1,15 @@
+{__derrian/colors/color__|} bikini
+{__derrian/colors/color__|} bikini, sarong
+{__derrian/colors/color__|} leaf bikini
+{__derrian/colors/color__|} string bikini
+{__derrian/colors/color__|} micro bikini
+{__derrian/colors/color__|} bikini, side-tie bikini bottom
+{__derrian/colors/color__|} lowleg bikini
+{__derrian/colors/color__|} thong bikini
+{__derrian/colors/color__|} venus bikini
+{__derrian/colors/color__|} sports bikini
+{__derrian/colors/color__|} swimsuit
+{__derrian/colors/color__|} swimsuit, rash guard
+{__derrian/colors/color__|} competition swimsuit
+{__derrian/colors/color__|} slingshot swimsuit
+{__derrian/colors/color__|} school swimsuit

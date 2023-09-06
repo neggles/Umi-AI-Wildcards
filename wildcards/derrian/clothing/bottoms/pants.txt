@@ -1,0 +1,17 @@
+{__derrian/colors/color__|} shorts
+{__derrian/colors/color__|} bike shorts
+{__derrian/colors/color__|} denim shorts
+{__derrian/colors/color__|} dolphin shorts
+{__derrian/colors/color__|} gym shorts
+{__derrian/colors/color__|} lowleg shorts
+{__derrian/colors/color__|} micro shorts
+{__derrian/colors/color__|} short shorts
+{__derrian/colors/color__|} pants
+{__derrian/colors/color__|} bloomers
+{__derrian/colors/color__|} buruma
+{__derrian/colors/color__|} capri pants
+{__derrian/colors/color__|} jeans
+{__derrian/colors/color__|} cutoff jeans
+{__derrian/colors/color__|} lowleg pants
+{__derrian/colors/color__|} pants rolled up
+{__derrian/colors/color__|} petticoat

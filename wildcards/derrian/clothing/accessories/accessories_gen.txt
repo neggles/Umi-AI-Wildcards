@@ -1,0 +1,4 @@
+glasses
+__derrian/clothing/accessories/earrings__
+__derrian/clothing/accessories/hair__
+__derrian/clothing/accessories/neck__

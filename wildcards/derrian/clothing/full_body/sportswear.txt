@@ -1,0 +1,8 @@
+{__derrian/colors/color__|} bikesuit
+{__derrian/colors/color__|} racing suit
+{__derrian/colors/color__|} bodysuit
+{__derrian/colors/color__|} jumpsuit
+{__derrian/colors/color__|} short jumpsuit
+{__derrian/colors/color__|} leotard
+{__derrian/colors/color__|} strapless leotard
+{__derrian/colors/color__|} unitard

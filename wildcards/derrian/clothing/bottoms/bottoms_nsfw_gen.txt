@@ -1,0 +1,4 @@
+bottomless
+__derrian/clothing/bottoms/bottoms_gen__
+__derrian/clothing/bottoms/bottoms_gen__
+__derrian/clothing/panties/panties_gen__, __derrian/clothing/panties/panties_mod_nsfw__

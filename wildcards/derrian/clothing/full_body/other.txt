@@ -1,0 +1,5 @@
+{__derrian/colors/color__|} tunic
+{__derrian/colors/color__|} bodystocking
+{__derrian/colors/color__|} robe
+{__derrian/colors/color__|} bathrobe
+{__derrian/colors/color__|} romper
