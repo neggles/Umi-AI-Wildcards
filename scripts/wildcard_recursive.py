@@ -44,7 +44,6 @@ def read_file_lines(file):
             lines.append(line)
     return lines
 
-
 # Wildcards
 class TagLoader:
     files = []
@@ -491,19 +490,22 @@ class Script(scripts.Script):
         with gr.Accordion('UmiAI', open=False, elem_id="umiai"):
             with gr.Row():
                 enabled = gr.Checkbox(label="Enable UmiAI", value=True, elem_id="umiai-toggle")
-                enabled.change(None,_js="document.getElementById(\"umiai\").classList.toggle(\"umiai-active\")")
-                urlguide = gr.HTML(value = "<a href=\"https://github.com/Tsukreya/Umi-AI-debloat\">Usage guide</a>")
+                enabled.change(None,_js="() => {umiaidiv = document.getElementById('umiai');if (document.getElementById('umiai-toggle').querySelectorAll('input[type=checkbox]')[0].checked) {umiaidiv.classList.add('umiai-active');} else {document.getElementById('umiai').classList.remove('umiai-active');}}")
+                urlguide = gr.HTML(value = "<a href=\"https://github.com/Tsukreya/Umi-AI-Wildcards\">Usage guide</a>")
             with gr.Row(elem_id="umiai-seeds"):
                 shared_seed = gr.Checkbox(label="Static wildcards", elem_id="umiai-static-wildcards", 
-                                            value=False, tooltip="same seed = same prompt")
-                same_seed = gr.Checkbox(label='Same prompt in batch', value=False)
+                                            value=False, tooltip="Always picks the same random/wildcard options when using a static seed.")
+                same_seed = gr.Checkbox(label='Same prompt in batch', value=False, 
+                                        tooltip="Same prompt will be used for all generated images in a batch.")
             with gr.Row(elem_id="umiai-lesser"):                
-                cache_files = gr.Checkbox(label="Cache tag files", value=True)
-                verbose = gr.Checkbox(label="Verbose logging", value=False)
+                cache_files = gr.Checkbox(label="Cache tag files", value=True, 
+                                          tooltip="Cache .txt and .yaml files at runtime. Speeds up prompt generation. Disable if you're editing wildcard files to see changes instantly.")
+                verbose = gr.Checkbox(label="Verbose logging", value=False, 
+                                      tooltip="Displays UmiAI log messages. Useful when prompt crafting, or debugging file-path errors.")
                 negative_prompt = gr.Checkbox(label='**negative keywords**', value=True,
                                                 elem_id="umiai-negative-keywords", 
-                                                tooltip="wrapping keywords in ** appends them to negative prompt")
-                ignore_folders = gr.Checkbox(label="Ignore folders", value=True)
+                                                tooltip="Collect and add **negative keywords** from wildcards to Negative Prompts.")
+                ignore_folders = gr.Checkbox(label="Ignore folders", value=False)
 
         return [enabled, verbose, cache_files, ignore_folders, same_seed, negative_prompt, shared_seed, urlguide,
                 ]
@@ -513,7 +515,7 @@ class Script(scripts.Script):
         if not enabled:
             return
 
-        debug = True
+        debug = False
 
         if debug: print(f'\nModel: {p.sampler_name}, Seed: {int(p.seed)}, Width: {p.width}, Height: {p.height}, Batch Count: {p.n_iter}, Batch Size: {p.batch_size}, CFG: {p.cfg_scale}, Steps: {p.steps}\nOriginal Prompt: "{p.prompt}"\nOriginal Negatives: "{p.negative_prompt}"\n')
         original_prompt = p.all_prompts[0]
