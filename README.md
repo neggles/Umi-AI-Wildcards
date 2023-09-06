@@ -1,5 +1,5 @@
 # Fork
-The weird commit numbers stem from the fact that I purged the git history to not download 1gb worth of embeddings every time.
+Opinionated fork of UmiAI with some small changes that I consider improvements. 
 
 The wildcards in the derrian directory come from https://gitgud.io/psuedo/wildcards_stuff, it includes some very nice recursive ones.
 
