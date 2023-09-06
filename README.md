@@ -1,3 +1,56 @@
+# Fork
+The weird commit numbers stem from the fact that I purged the git history to not download 1gb worth of embeddings every time.
+
+The wildcards in the derrian directory come from https://gitgud.io/psuedo/wildcards_stuff, it includes some very nice recursive ones.
+
+Most of the wildcards in user directory come from wonderful users of Touhou Project AI discord, thanks guys.
+
+I advise using this with https://github.com/DominikDoom/a1111-sd-webui-tagcomplete.
+
+## Installation 
+Install it as you would any other extension, either by:
+ - dropping the URL `https://github.com/Tsukreya/Umi-AI-debloat.git` into the install from URL box and pressing install.
+ - or running `git clone https://github.com/Tsukreya/Umi-AI-debloat` inside the webui extensions folder.
+   
+Either way a restart of the webui if you have it currently running is advised, so that the autocomplete extension (which I recommend once again) to pick up on the wildcards.
+
+### Settings override usage:
+Values that you can override are: `cfg_scale, sampler, steps, width, height, denoising_strength`
+You would do so by wrapping those in `@@` and assigning a value. You can specify multiple overrides in one `@@` block using `+` as a separator:
+`@@width=512+height=768@@`
+`@@width={512|768}+height={512|768}@@`
+
+Using `,` as a separator is a change from the original repo which used `|` as a separator, but I found it ambiguous and too messy when setting wildcard values for setting overrides directly in the prompt.
+
+### Below is the usage taken directly from UmiAI's wiki:
+
+* `{a|b|c|...}` will pick one of `a`, `b`, `c`, ...
+* `{x-y$$a|b|c|...}` will pick between `x` and `y` of `a`, `b`, `c`, ...
+* `{x$$a|b|c|...}` will pick `x` of `a`, `b`, `c`, ...
+* `{x-$$a|b|c|...}` will pick atleast `x` of `a`, `b`, `c`, ...
+* `{-y$$a|b|c|...}` will pick upto `y` of `a`, `b`, `c`, ...
+* `{x%a|...}` will pick `a` with `x`% chance otherwise one of the rest
+
+* `__text__` will pick a random line from the file `text`.txt in the wildcard folder
+
+* `<[tag]>` will pick a random item from yaml files in wildcard folder with given `tag`
+* `<[tag1][tag2]>` will pick a random item from yaml files in wildcard folder with both `tag1` **and** `tag2`
+* `<[tag1|tag2]>` will pick a random item from yaml files in wildcard folder with `tag1` **or** `tag2`
+* `<[--tag]>` will pick a random item from yaml files in wildcard folder that does not have the given `tag`
+* `<file:[tag]>` will pick a random item from yaml file `file`.yaml in wildcard folder with given tag
+
+WebUI Prompt Reference
+
+* `(text)` emphasizes text by a factor of 1.1
+* `[text]` deemphasizes text by a factor of 0.9
+* `(text:x)` (de)emphasizes text by a factor of x
+* `\(` or `\)` for literal parenthesis in prompt
+* `[from:to:when]` changes prompt from `from` to `to` after `when` steps if `when` > 1 or after the fraction of `current step/total steps` is bigger than `when`
+* `[a|b|c|...]` cycles the prompt between the given options each step
+* `text1 AND text2` creates a prompt that is a mix of the prompts `text1` and `text2` can be modified by adding `:x` like `text1:x AND text2:y`
+
+<details><summary>Original README file.</summary>
+    
 # Umi AI: A WebUI Wildcard Mod!
 
 Umi AI is a wildcard mod that allows you to create randomized characters from random species with modular clothing types. It will grow over time and eventually become the ultimate character randomizer and creator.
@@ -44,3 +97,4 @@ https://github.com/Klokinator/UnivAICharGen.git
 Press Install, and you'll be ready to start randomly generating with Umi AI!
 
 At this point, you can just [join the Umi AI Discord](https://discord.gg/9K7j7DTfG2) to learn all the nuances of how to use Umi AI properly as well as share your characters!
+</details>
