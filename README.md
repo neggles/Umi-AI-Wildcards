@@ -16,9 +16,9 @@ Either way a restart of the webui if you have it currently running is advised, s
 
 ### Settings override usage:
 Values that you can override are: `cfg_scale, sampler, steps, width, height, denoising_strength`
-You would do so by wrapping those in `@@` and assigning a value. You can specify multiple overrides in one `@@` block using `+` as a separator:
-`@@width=512+height=768@@`
-`@@width={512|768}+height={512|768}@@`
+You would do so by wrapping those in `@@` and assigning a value. You can specify multiple overrides in one `@@` block using `,` as a separator:
+`@@width=512, height=768@@`
+`@@width={512|768}, height={512|768}@@`
 
 Using `,` as a separator is a change from the original repo which used `|` as a separator, but I found it ambiguous and too messy when setting wildcard values for setting overrides directly in the prompt.
 
