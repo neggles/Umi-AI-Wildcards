@@ -487,18 +487,22 @@ class Script(scripts.Script):
         self.is_txt2img = is_img2img == False
         with gr.Accordion('UmiAI', open=False, elem_id="umiai"):
             with gr.Row():
-                enabled = gr.Checkbox(label="UmiAI enabled", value=True)
-                verbose = gr.Checkbox(label="Verbose logging", value=False)
-                cache_files = gr.Checkbox(label="Cache files", value=True)
-                ignore_folders = gr.Checkbox(label="Ignore folders", value=True)
-                same_seed = gr.Checkbox(label='Same prompt in batch',
-                                        value=False)
-                negative_prompt = gr.Checkbox(label='**negative keywords**',
-                                              value=True)
-                shared_seed = gr.Checkbox(label="Static wildcards",
-                                          value=False)
+                enabled = gr.Checkbox(label="Enable UmiAI", value=True, elem_id="umiai-toggle")
+                enabled.change(None,_js="document.getElementById(\"umiai\").classList.toggle(\"umiai-active\")")
+                urlguide = gr.HTML(value = "<a href=\"https://github.com/Tsukreya/Umi-AI-debloat\">Usage guide</a>")
+                with gr.Row(elem_id="umiai-seeds"):
+                    shared_seed = gr.Checkbox(label="Static wildcards", elem_id="umiai-static-wildcards", 
+                                              value=False, tooltip="same seed = same prompt")
+                    same_seed = gr.Checkbox(label='Same prompt in batch', value=False)
+                with gr.Row(elem_id="umiai-lesser"):                
+                    cache_files = gr.Checkbox(label="Cache tag files", value=True)
+                    verbose = gr.Checkbox(label="Verbose logging", value=False)
+                    negative_prompt = gr.Checkbox(label='**negative keywords**', value=True,
+                                                   elem_id="umiai-negative-keywords", 
+                                                   tooltip="wrapping keywords in ** appends them to negative prompt")
+                    ignore_folders = gr.Checkbox(label="Ignore folders", value=True)
 
-        return [enabled, verbose, cache_files, ignore_folders, same_seed, negative_prompt, shared_seed,
+        return [enabled, verbose, cache_files, ignore_folders, same_seed, negative_prompt, shared_seed, urlguide,
                 ]
 
     def process(self, p, enabled, verbose, cache_files, ignore_folders, same_seed, negative_prompt,
