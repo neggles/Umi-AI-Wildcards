@@ -449,7 +449,7 @@ class SettingsGenerator:
         matches = self.re_setting_tags.findall(prompt)
         if matches:
             for match in matches:
-                for assignment in match.replace(" ","").split(","):
+                for assignment in match.split("+"):
                     key_raw, value = assignment.split("=")
                     if not value:
                         print(
@@ -493,17 +493,17 @@ class Script(scripts.Script):
                 enabled = gr.Checkbox(label="Enable UmiAI", value=True, elem_id="umiai-toggle")
                 enabled.change(None,_js="document.getElementById(\"umiai\").classList.toggle(\"umiai-active\")")
                 urlguide = gr.HTML(value = "<a href=\"https://github.com/Tsukreya/Umi-AI-debloat\">Usage guide</a>")
-                with gr.Row(elem_id="umiai-seeds"):
-                    shared_seed = gr.Checkbox(label="Static wildcards", elem_id="umiai-static-wildcards", 
-                                              value=False, tooltip="same seed = same prompt")
-                    same_seed = gr.Checkbox(label='Same prompt in batch', value=False)
-                with gr.Row(elem_id="umiai-lesser"):                
-                    cache_files = gr.Checkbox(label="Cache tag files", value=True)
-                    verbose = gr.Checkbox(label="Verbose logging", value=False)
-                    negative_prompt = gr.Checkbox(label='**negative keywords**', value=True,
-                                                   elem_id="umiai-negative-keywords", 
-                                                   tooltip="wrapping keywords in ** appends them to negative prompt")
-                    ignore_folders = gr.Checkbox(label="Ignore folders", value=True)
+            with gr.Row(elem_id="umiai-seeds"):
+                shared_seed = gr.Checkbox(label="Static wildcards", elem_id="umiai-static-wildcards", 
+                                            value=False, tooltip="same seed = same prompt")
+                same_seed = gr.Checkbox(label='Same prompt in batch', value=False)
+            with gr.Row(elem_id="umiai-lesser"):                
+                cache_files = gr.Checkbox(label="Cache tag files", value=True)
+                verbose = gr.Checkbox(label="Verbose logging", value=False)
+                negative_prompt = gr.Checkbox(label='**negative keywords**', value=True,
+                                                elem_id="umiai-negative-keywords", 
+                                                tooltip="wrapping keywords in ** appends them to negative prompt")
+                ignore_folders = gr.Checkbox(label="Ignore folders", value=True)
 
         return [enabled, verbose, cache_files, ignore_folders, same_seed, negative_prompt, shared_seed, urlguide,
                 ]
@@ -513,7 +513,7 @@ class Script(scripts.Script):
         if not enabled:
             return
 
-        debug = False
+        debug = True
 
         if debug: print(f'\nModel: {p.sampler_name}, Seed: {int(p.seed)}, Width: {p.width}, Height: {p.height}, Batch Count: {p.n_iter}, Batch Size: {p.batch_size}, CFG: {p.cfg_scale}, Steps: {p.steps}\nOriginal Prompt: "{p.prompt}"\nOriginal Negatives: "{p.negative_prompt}"\n')
         original_prompt = p.all_prompts[0]
@@ -560,7 +560,7 @@ class Script(scripts.Script):
 
                 # same prompt per batch
                 if (same_seed):
-                    for index in range(index, index + p.batch_size):
+                    for index, i in enumerate(p.all_prompts):
                         p.all_prompts[index] = prompt
                     break
 
@@ -570,6 +570,7 @@ class Script(scripts.Script):
                     return index
 
         att_override = prompt_generator.get_setting_overrides()
+        print(att_override)
         #print(att_override)
         for att in att_override.keys():
             if not att.startswith("__"):
