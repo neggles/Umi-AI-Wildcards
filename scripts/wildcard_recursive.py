@@ -515,7 +515,7 @@ class Script(scripts.Script):
 
         debug = False
 
-        if debug: print(f'\nModel: {p.sampler_name}, Seed: {int(p.seed)}, Batch Count: {p.n_iter}, Batch Size: {p.batch_size}, CFG: {p.cfg_scale}, Steps: {p.steps}\nOriginal Prompt: "{p.prompt}"\nOriginal Negatives: "{p.negative_prompt}"\n')
+        if debug: print(f'\nModel: {p.sampler_name}, Seed: {int(p.seed)}, Width: {p.width}, Height: {p.height}, Batch Count: {p.n_iter}, Batch Size: {p.batch_size}, CFG: {p.cfg_scale}, Steps: {p.steps}\nOriginal Prompt: "{p.prompt}"\nOriginal Negatives: "{p.negative_prompt}"\n')
         original_prompt = p.all_prompts[0]
         if hasattr(p, "all_negative_prompts"): # hasattr to fix crash on old webui versions
             original_negative = p.all_negative_prompts[0]
