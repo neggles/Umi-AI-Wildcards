@@ -22,6 +22,37 @@ from modules.sd_samplers import samplers, samplers_for_img2img
 
 
 ALL_KEY = 'all yaml files'
+UsageGuide = """
+                    ### Usage
+                    * `{a|b|c|...}` will pick one of `a`, `b`, `c`, ...
+                    * `{x-y$$a|b|c|...}` will pick between `x` and `y` of `a`, `b`, `c`, ...
+                    * `{x$$a|b|c|...}` will pick `x` of `a`, `b`, `c`, ...
+                    * `{x-$$a|b|c|...}` will pick atleast `x` of `a`, `b`, `c`, ...
+                    * `{-y$$a|b|c|...}` will pick upto `y` of `a`, `b`, `c`, ...
+                    * `{x%a|...}` will pick `a` with `x`% chance otherwise one of the rest
+                    * `__text__` will pick a random line from the file `text`.txt in the wildcard folder
+                    * `<[tag]>` will pick a random item from yaml files in wildcard folder with given `tag`
+                    * `<[tag1][tag2]>` will pick a random item from yaml files in wildcard folder with both `tag1` **and** `tag2`
+                    * `<[tag1|tag2]>` will pick a random item from yaml files in wildcard folder with `tag1` **or** `tag2`
+                    * `<[--tag]>` will pick a random item from yaml files in wildcard folder that does not have the given `tag`
+                    * `<file:[tag]>` will pick a random item from yaml file `file`.yaml in wildcard folder with given tag
+                    
+                    ### Settings override
+                    * `@@width=512, height=768@@` will set the width of the image to be `512` and height to be `768`. 
+                    * Available settings to override are `cfg_scale, sampler, steps, width, height, denoising_strength`.
+
+                    ### WebUI Prompt Reference
+                    * `(text)` emphasizes text by a factor of 1.1
+                    * `[text]` deemphasizes text by a factor of 0.9
+                    * `(text:x)` (de)emphasizes text by a factor of x
+                    * `\(` or `\)` for literal parenthesis in prompt
+                    * `[from:to:when]` changes prompt from `from` to `to` after `when` steps if `when` > 1 
+                            or after the fraction of `current step/total steps` is bigger than `when`
+                    * `[a|b|c|...]` cycles the prompt between the given options each step
+                    * `text1 AND text2` creates a prompt that is a mix of the prompts `text1` and `text2`. 
+
+                    [Link to the fork you're using.](https://github.com/Tsukreya/Umi-AI-Wildcards)
+                    """
 
 def get_index(items, item):
     try:
@@ -448,7 +479,7 @@ class SettingsGenerator:
         matches = self.re_setting_tags.findall(prompt)
         if matches:
             for match in matches:
-                for assignment in match.split("+"):
+                for assignment in match.split(","):
                     key_raw, value = assignment.split("=")
                     if not value:
                         print(
@@ -457,6 +488,7 @@ class SettingsGenerator:
                         continue
                     key_found = False
                     for key in self.type_mapping.keys():
+                        key = key.strip()
                         if key.startswith(key_raw):
                             self.setting_overrides[key] = self.type_mapping[
                                 key](value)
@@ -487,27 +519,30 @@ class Script(scripts.Script):
 
     def ui(self, is_img2img):
         self.is_txt2img = is_img2img == False
-        with gr.Accordion('UmiAI', open=False, elem_id="umiai"):
+        with gr.Accordion('UmiAI', open=True, elem_id="umiai"):
             with gr.Row():
                 enabled = gr.Checkbox(label="Enable UmiAI", value=True, elem_id="umiai-toggle")
                 enabled.change(None,_js="() => {umiaidiv = document.getElementById('umiai');if (document.getElementById('umiai-toggle').querySelectorAll('input[type=checkbox]')[0].checked) {umiaidiv.classList.add('umiai-active');} else {document.getElementById('umiai').classList.remove('umiai-active');}}")
-                urlguide = gr.HTML(value = "<a href=\"https://github.com/Tsukreya/Umi-AI-Wildcards\">Usage guide</a>")
-            with gr.Row(elem_id="umiai-seeds"):
-                shared_seed = gr.Checkbox(label="Static wildcards", elem_id="umiai-static-wildcards", 
-                                            value=False, tooltip="Always picks the same random/wildcard options when using a static seed.")
-                same_seed = gr.Checkbox(label='Same prompt in batch', value=False, 
-                                        tooltip="Same prompt will be used for all generated images in a batch.")
-            with gr.Row(elem_id="umiai-lesser"):                
-                cache_files = gr.Checkbox(label="Cache tag files", value=True, 
-                                          tooltip="Cache .txt and .yaml files at runtime. Speeds up prompt generation. Disable if you're editing wildcard files to see changes instantly.")
-                verbose = gr.Checkbox(label="Verbose logging", value=False, 
-                                      tooltip="Displays UmiAI log messages. Useful when prompt crafting, or debugging file-path errors.")
-                negative_prompt = gr.Checkbox(label='**negative keywords**', value=True,
-                                                elem_id="umiai-negative-keywords", 
-                                                tooltip="Collect and add **negative keywords** from wildcards to Negative Prompts.")
-                ignore_folders = gr.Checkbox(label="Ignore folders", value=False)
+                #urlguide = gr.HTML(value = "<a href=\"https://github.com/Tsukreya/Umi-AI-Wildcards\">Usage guide</a>")
+            with gr.Tab("Settings"):                
+                with gr.Row(elem_id="umiai-seeds"):
+                    shared_seed = gr.Checkbox(label="Static wildcards", elem_id="umiai-static-wildcards", 
+                                                value=False, tooltip="Always picks the same random/wildcard options when using a static seed.")
+                    same_seed = gr.Checkbox(label='Same prompt in batch', value=False, 
+                                            tooltip="Same prompt will be used for all generated images in a batch.")
+                with gr.Row(elem_id="umiai-lesser"):                
+                    cache_files = gr.Checkbox(label="Cache tag files", value=True, 
+                                            tooltip="Cache .txt and .yaml files at runtime. Speeds up prompt generation. Disable if you're editing wildcard files to see changes instantly.")
+                    verbose = gr.Checkbox(label="Verbose logging", value=False, 
+                                        tooltip="Displays UmiAI log messages. Useful when prompt crafting, or debugging file-path errors.")
+                    negative_prompt = gr.Checkbox(label='**negative keywords**', value=True,
+                                                    elem_id="umiai-negative-keywords", 
+                                                    tooltip="Collect and add **negative keywords** from wildcards to Negative Prompts.")
+                    ignore_folders = gr.Checkbox(label="Ignore folders", value=False)
+            with gr.Tab("Usage"):
+                gr.Markdown(UsageGuide)
 
-        return [enabled, verbose, cache_files, ignore_folders, same_seed, negative_prompt, shared_seed, urlguide,
+        return [enabled, verbose, cache_files, ignore_folders, same_seed, negative_prompt, shared_seed,
                 ]
 
     def process(self, p, enabled, verbose, cache_files, ignore_folders, same_seed, negative_prompt,
