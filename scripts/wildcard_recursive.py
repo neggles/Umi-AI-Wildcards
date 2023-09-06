@@ -377,9 +377,9 @@ class PromptGenerator:
         self.negative_tag_generator = NegativePromptGenerator()
         self.settings_generator = SettingsGenerator()
         self.replacers = [
-            self.settings_generator,
             TagReplacer(self.tag_selector, options),
-            DynamicPromptReplacer()
+            DynamicPromptReplacer(),
+            self.settings_generator
         ]
         self.verbose = dict(options).get('verbose', False)
 
