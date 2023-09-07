@@ -9,8 +9,8 @@ I advise using this with https://github.com/DominikDoom/a1111-sd-webui-tagcomple
 
 ## Installation 
 Install it as you would any other extension, either by:
- - dropping the URL `https://github.com/Tsukreya/Umi-AI-debloat.git` into the install from URL box and pressing install.
- - or running `git clone https://github.com/Tsukreya/Umi-AI-debloat` inside the webui extensions folder.
+ - dropping the URL `https://github.com/Tsukreya/Umi-AI-Wildcards` into the install from URL box and pressing install.
+ - or running `git clone https://github.com/Tsukreya/Umi-AI-Wildcards` inside the webui extensions folder.
    
 Either way a restart of the webui if you have it currently running is advised, so that the autocomplete extension (which I recommend once again) to pick up on the wildcards.
 
