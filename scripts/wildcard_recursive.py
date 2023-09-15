@@ -50,19 +50,6 @@ UsageGuide = """
                             or after the fraction of `current step/total steps` is bigger than `when`
                     * `[a|b|c|...]` cycles the prompt between the given options each step
                     * `text1 AND text2` creates a prompt that is a mix of the prompts `text1` and `text2`. 
-
-                    [Link to the fork you're using.](https://github.com/Tsukreya/Umi-AI-Wildcards)
-                    """
-
-                    ### WebUI Prompt Reference
-                    * `(text)` emphasizes text by a factor of 1.1
-                    * `[text]` deemphasizes text by a factor of 0.9
-                    * `(text:x)` (de)emphasizes text by a factor of x
-                    * `\(` or `\)` for literal parenthesis in prompt
-                    * `[from:to:when]` changes prompt from `from` to `to` after `when` steps if `when` > 1 
-                            or after the fraction of `current step/total steps` is bigger than `when`
-                    * `[a|b|c|...]` cycles the prompt between the given options each step
-                    * `text1 AND text2` creates a prompt that is a mix of the prompts `text1` and `text2`. 
                     """
 def get_index(items, item):
     try:
